@@ -23,7 +23,6 @@ RUN npm i
 FROM dev-deps AS build
 COPY src src
 COPY tsconfig.json .
-COPY .swcrc .
 RUN npm run build:js
 RUN chown -R turing:turing dist
 
