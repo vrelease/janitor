@@ -1,7 +1,7 @@
 {
   "name": "janitor",
   "version": "0.5.0",
-  "description": "Yet Another TypeScript Template",
+  "description": "",
   "main": "dist/index.js",
   "author": "Caian Ertl <hi@caian.org>",
   "license": "CC0-1.0",
@@ -14,12 +14,11 @@
   },
   "homepage": "https://github.com/vrelease/janitor#readme",
   "scripts": {
-    "all": "npm run build:js && npm run build:docs && npm run fix:style && npm run check:all && npm test && npm run clean",
+    "all": "npm run build:js && npm run fix:style && npm run check:all && npm run clean",
     "start": "node dist/index.js",
     "start:watch": "nodemon",
-    "build:js": "swc src --out-dir dist & tsc --skipLibCheck --noEmit",
+    "build:js": "tsc",
     "build:js:clean": "rm -rf dist && npm run build:js",
-    "build:docs": "typedoc --theme ./node_modules/typedoc-neo-theme/bin/default --plugin typedoc-neo-theme src && cp logo.svg docs",
     "bump:dev": "ncu --upgrade --dep dev",
     "bump:prod": "ncu --upgrade --dep prod --target minor",
     "bump:all": "npm run bump:dev && npm run bump:prod",
@@ -29,14 +28,9 @@
     "check:duplicated": "jscpd",
     "check:all": "npm run check:build && npm run check:lint && npm run check:style && npm run check:duplicated",
     "fix:style": "prettier --no-semi --print-width 100 --single-quote --trailing-comma none --write '**/*.ts' && standardx --fix '**/*.ts'",
-    "test": "jest --verbose --collect-coverage",
-    "test:cov": "npm test && codecov --token=\"$CODECOV_TOKEN\"",
-    "clean": "rm -rf coverage dist docs report",
+    "clean": "rm -rf coverage dist report",
     "commit": "cz",
     "prepare": "[ \"$NODE_ENV\" == \"production\" ] && exit 0; husky install"
-  },
-  "_moduleAliases": {
-    "@janitor": "dist"
   },
   "standardx": {
     "parser": "@typescript-eslint/parser",
@@ -44,9 +38,13 @@
       "@typescript-eslint/eslint-plugin"
     ]
   },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
   "eslintIgnore": [
     "dist",
-    "docs",
     "report"
   ],
   "lint-staged": {
@@ -65,49 +63,11 @@
     "ignore": [
       "**/.github/**",
       "**/dist/**",
-      "**/docs/**",
       "**/report/**"
     ]
   },
-  "jest": {
-    "preset": "ts-jest",
-    "testEnvironment": "node",
-    "collectCoverageFrom": [
-      "**/src/**/*.{js,jsx,ts,tsx}",
-      "!dist/**/*.js",
-      "!src/index.ts"
-    ],
-    "moduleFileExtensions": [
-      "js",
-      "jsx",
-      "json",
-      "ts",
-      "tsx"
-    ],
-    "transform": {
-      "^.+\\.(ts|tsx)$": "ts-jest"
-    },
-    "globals": {
-      "ts-jest": {
-        "tsconfig": "tsconfig.json"
-      }
-    },
-    "testPathIgnorePatterns": [
-      "/dist/",
-      "/node_modules/"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "lines": 80
-      }
-    },
-    "moduleNameMapper": {
-      "^@janitor/(.*)$": "<rootDir>/src/$1"
-    }
-  },
   "nodemonConfig": {
     "ignore": [
-      "test",
       ".git",
       "node_modules"
     ],
@@ -120,47 +80,30 @@
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
-    "@swc/cli": "^0.1.49",
-    "@swc/core": "^1.2.80",
-    "@types/jest": "^27.0.1",
     "@types/node": "^16.6.2",
     "@typescript-eslint/eslint-plugin": "^4.29.2",
     "@typescript-eslint/parser": "^4.29.2",
-    "codecov": "^3.8.3",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.32.0",
     "eslint-config-standard-with-typescript": "^20.0.0",
     "eslint-plugin-import": "^2.24.0",
-    "eslint-plugin-jest": "^24.4.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.3.1",
     "eslint-plugin-standard": "^5.0.0",
     "husky": "^7.0.1",
-    "jest": "^27.0.6",
     "jscpd": "^3.3.26",
     "lint-staged": "^11.1.2",
     "nodemon": "^2.0.12",
     "npm-check-updates": "^11.8.3",
     "prettier": "^2.3.2",
     "standardx": "^7.0.0",
-    "ts-jest": "^27.0.5",
     "ts-node": "^10.2.1",
-    "typedoc": "^0.21.6",
-    "typedoc-neo-theme": "^1.1.1",
     "typescript": "^4.3.5",
     "vrelease-bin": "^0.3.1"
   },
   "dependencies": {
-    "module-alias": "^2.2.2",
     "octokit": "^1.4.0",
-    "regenerator-runtime": "^0.13.9",
-    "semver": "^7.3.5",
-    "winston": "^3.3.3"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
+    "semver": "^7.3.5"
   }
 }
