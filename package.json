@@ -16,6 +16,7 @@
   "scripts": {
     "all": "npm run build:js && npm run fix:style && npm run check:all && npm run clean",
     "start": "node dist/index.js",
+    "start:ts": "ts-node src/index.ts",
     "start:watch": "nodemon",
     "build:js": "tsc",
     "build:js:clean": "rm -rf dist && npm run build:js",
@@ -80,7 +81,9 @@
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
+    "@types/lodash": "^4.14.172",
     "@types/node": "^16.6.2",
+    "@types/semver": "^7.3.8",
     "@typescript-eslint/eslint-plugin": "^4.29.2",
     "@typescript-eslint/parser": "^4.29.2",
     "commitizen": "^4.2.4",
@@ -103,6 +106,8 @@
     "vrelease-bin": "^0.3.1"
   },
   "dependencies": {
+    "chalk": "^4.1.2",
+    "lodash": "^4.17.21",
     "octokit": "^1.4.0",
     "semver": "^7.3.5"
   }
