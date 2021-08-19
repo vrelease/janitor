@@ -19,7 +19,6 @@ RUN chown -R turing:turing node_modules package.json package-lock.json
 
 FROM package AS dev-deps
 RUN npm i
-RUN npm i --save-dev @swc/core-linux-musl
 
 FROM dev-deps AS build
 COPY src src
