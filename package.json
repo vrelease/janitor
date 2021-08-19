@@ -1,5 +1,5 @@
 {
-  "name": "yatt",
+  "name": "janitor",
   "version": "0.5.0",
   "description": "Yet Another TypeScript Template",
   "main": "dist/index.js",
@@ -7,18 +7,12 @@
   "license": "CC0-1.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/caian-org/yatt.git"
+    "url": "git+https://github.com/vrelease/janitor.git"
   },
   "bugs": {
-    "url": "https://github.com/caian-org/yatt/issues"
+    "url": "https://github.com/vrelease/janitor/issues"
   },
-  "homepage": "https://github.com/caian-org/yatt#readme",
-  "keywords": [
-    "typescript",
-    "nodejs",
-    "template",
-    "yatt"
-  ],
+  "homepage": "https://github.com/vrelease/janitor#readme",
   "scripts": {
     "all": "npm run build:js && npm run build:docs && npm run fix:style && npm run check:all && npm test && npm run clean",
     "start": "node dist/index.js",
@@ -42,7 +36,7 @@
     "prepare": "[ \"$NODE_ENV\" == \"production\" ] && exit 0; husky install"
   },
   "_moduleAliases": {
-    "@yatt": "dist"
+    "@janitor": "dist"
   },
   "standardx": {
     "parser": "@typescript-eslint/parser",
@@ -108,7 +102,7 @@
       }
     },
     "moduleNameMapper": {
-      "^@yatt/(.*)$": "<rootDir>/src/$1"
+      "^@janitor/(.*)$": "<rootDir>/src/$1"
     }
   },
   "nodemonConfig": {
