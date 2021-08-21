@@ -3,7 +3,7 @@ name: build-and-push-docker
 on:
   push:
     tags:
-      - "*"
+      - "v*"
 
 jobs:
   code-check:
