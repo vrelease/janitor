@@ -1,7 +1,6 @@
 FROM node:14.17-alpine AS base
 MAINTAINER Caian R. Ertl <hi@caian.org>
 
-RUN npm i -g npm@latest
 RUN addgroup -S turing && adduser -S turing -G turing
 RUN mkdir -p /home/turing
 RUN chown turing:turing /home/turing
