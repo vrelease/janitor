@@ -17,11 +17,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Export git tag
+      - name: Build image
         run: |
           export GIT_TAG="$(git tag | tail -n 1)"
           export IMAGE_LATEST="$IMAGE_NAME:latest"
           export IMAGE_TAGGED="$IMAGE_NAME:$GIT_TAG"
 
-      - name: Build image
-        run: docker build -t "$IMAGE_LATEST" .
+          docker build -t "$IMAGE_LATEST" .
