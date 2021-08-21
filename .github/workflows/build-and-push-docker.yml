@@ -1,0 +1,27 @@
+name: build-and-push-docker
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  code-check:
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: caian/vrelease-janitor
+
+    steps:
+      - name: Checkout to janitor
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Export git tag
+        run: |
+          export GIT_TAG="$(git tag | tail -n 1)"
+          export IMAGE_LATEST="$IMAGE_NAME:latest"
+          export IMAGE_TAGGED="$IMAGE_NAME:$GIT_TAG"
+
+      - name: Build image
+        run: docker build -t "$IMAGE_LATEST" .
