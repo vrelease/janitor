@@ -2,7 +2,7 @@ name: Run janitor on schedule
 
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '11 0 * * 1'
 
 jobs:
   cleanup:
@@ -13,4 +13,4 @@ jobs:
         run: docker pull caian/vrelease-janitor:latest
 
       - name: Run janitor
-        run: docker run caian/vrelease-janitor -e GITHUB_AUTH_TOKEN="${{ secrets.GITHUB_TOKEN }}"
+        run: docker run -e GITHUB_AUTH_TOKEN="${{ secrets.AUTH_TOKEN }}" caian/vrelease-janitor
