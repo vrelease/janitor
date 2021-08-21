@@ -21,13 +21,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout to yatt
+      - name: Checkout to janitor
         uses: actions/checkout@v2
 
-      - name: Set up NodeJS 15
+      - name: Set up NodeJS
         uses: actions/setup-node@v1
         with:
-          node-version: 15.x
+          node-version: 14.x
 
       - name: Install dependencies
         run: npm i
