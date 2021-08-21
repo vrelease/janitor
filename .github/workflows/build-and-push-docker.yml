@@ -1,4 +1,4 @@
-name: "Build Docker image and push to Hub"
+name: Build Docker image and push to Hub
 
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
           username: "caian"
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build image
+      - name: Build and push image
         run: |
           export GIT_TAG="$(git tag | tail -n 1)"
           export IMAGE_LATEST="$IMAGE_NAME:latest"
