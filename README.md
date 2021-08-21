@@ -1,11 +1,7 @@
-[![Scheduled Job][gh-cron-job-shield]][gh-cron-job-url]
 [![Code Check][gh-code-check-shield]][gh-code-check-url]
 [![Code Quality][lgtm-shield]][lgtm-url]
 [![Docker Image Size][docker-img-size-shield]][docker-url]
 [![GitHub tag][tag-shield]][tag-url]
-
-[gh-cron-job-shield]: https://img.shields.io/github/workflow/status/vrelease/janitor/schedule?label=scheduled%20job&logo=github&style=flat-square
-[gh-cron-job-url]: https://github.com/vrelease/janitor/actions/workflows/schedule.yml
 
 [gh-code-check-shield]: https://img.shields.io/github/workflow/status/vrelease/janitor/code-check?label=code%20check&logo=github&style=flat-square
 [gh-code-check-url]: https://github.com/vrelease/janitor/actions/workflows/code-check.yml
