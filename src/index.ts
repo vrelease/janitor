@@ -5,7 +5,7 @@ import util from 'util'
 import _ from 'lodash'
 import chalk from 'chalk'
 import semver from 'semver'
-import { Octokit } from 'octokit'
+import { Octokit } from '@octokit/rest'
 
 interface IRepoTag {
   name: string
