@@ -23,7 +23,7 @@
     "bump:dev": "ncu --upgrade --dep dev",
     "bump:prod": "ncu --upgrade --dep prod --target minor",
     "bump:all": "npm run bump:dev && npm run bump:prod",
-    "check:build": "tsc --skipLibCheck --noEmit",
+    "check:build": "tsc --noEmit",
     "check:lint": "eslint --format=codeframe '**/*.ts'",
     "check:style": "standardx",
     "check:duplicated": "jscpd",
@@ -82,7 +82,7 @@
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
     "@types/lodash": "^4.14.172",
-    "@types/node": "^16.6.2",
+    "@types/node": "^16.7.1",
     "@types/semver": "^7.3.8",
     "@typescript-eslint/eslint-plugin": "^4.29.2",
     "@typescript-eslint/parser": "^4.29.2",
@@ -90,7 +90,7 @@
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.32.0",
     "eslint-config-standard-with-typescript": "^20.0.0",
-    "eslint-plugin-import": "^2.24.0",
+    "eslint-plugin-import": "^2.24.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.3.1",
     "eslint-plugin-standard": "^5.0.0",
@@ -106,9 +106,9 @@
     "vrelease-bin": "^0.3.1"
   },
   "dependencies": {
+    "@octokit/rest": "^18.9.1",
     "chalk": "^4.1.2",
     "lodash": "^4.17.21",
-    "octokit": "^1.4.0",
     "semver": "^7.3.5"
   }
 }
