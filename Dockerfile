@@ -1,36 +1,48 @@
-FROM node:16-alpine AS base
-MAINTAINER Caian R. Ertl <hi@caian.org>
+FROM node:16.14-alpine3.15 AS base
+LABEL maintainer="Caian Ertl <hi@caian.org>"
 
-RUN npm i -g npm@latest
-RUN addgroup -S turing && adduser -S turing -G turing
-RUN mkdir -p /home/turing
-RUN chown turing:turing /home/turing
+RUN addgroup -S turing && adduser -S turing -G turing \
+    && mkdir -p /home/turing \
+    && chown turing:turing /home/turing
+
+# ...
+FROM base AS package
 USER turing
 WORKDIR /home/turing
-
-FROM base AS package
-USER root
 COPY package.json .
-COPY package-lock.json .
+COPY pnpm-lock.yaml .
 
-FROM package AS prod-deps
-RUN apk add --no-cache curl
-RUN curl -sf https://gobinaries.com/tj/node-prune | sh
-RUN NODE_ENV="production" npm i --only=production
-RUN node-prune
-RUN chown -R turing:turing node_modules package.json package-lock.json
+# ...
+FROM package as bin
+SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
+USER root
+RUN npm i -g "pnpm@6.32.6" \
+    && apk add --no-cache "curl==7.80.0-r0" \
+    && curl -sf https://gobinaries.com/tj/node-prune | sh
 
-FROM package AS dev-deps
-RUN npm i
+# ...
+FROM bin AS dev-deps
+USER turing
+RUN pnpm i
 
+# ...
+FROM bin AS prod-deps
+USER turing
+RUN NODE_ENV="production" pnpm i \
+    && node-prune
+
+# ...
 FROM dev-deps AS build
+USER turing
+WORKDIR /home/turing
 COPY src src
 COPY tsconfig.json .
-RUN npm run build:js
-RUN chown -R turing:turing dist
+RUN pnpm run build:js
 
-FROM package AS run
+# ...
+FROM base AS run
 USER turing
-COPY --from=prod-deps ["/home/turing/node_modules", "./node_modules"]
-COPY --from=build ["/home/turing/dist", "./dist"]
-ENTRYPOINT ["npm", "start"]
+WORKDIR /home/turing
+COPY --from=prod-deps ["/home/turing/node_modules", "node_modules"]
+COPY --from=build ["/home/turing/dist", "dist"]
+ENTRYPOINT ["node", "dist"]
