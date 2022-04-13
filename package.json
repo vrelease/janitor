@@ -14,7 +14,7 @@
   },
   "homepage": "https://github.com/vrelease/janitor#readme",
   "scripts": {
-    "all": "pnpm run build:js && pnpm run fix:style && pnpm run check:all && pnpm run clean",
+    "all": "pnpm run build:js && pnpm run check:all && pnpm run clean",
     "start": "node dist",
     "start:ts": "ts-node src",
     "start:watch": "nodemon",
