@@ -14,20 +14,19 @@
   },
   "homepage": "https://github.com/vrelease/janitor#readme",
   "scripts": {
-    "all": "npm run build:js && npm run fix:style && npm run check:all && npm run clean",
-    "start": "node dist/index.js",
-    "start:ts": "ts-node src/index.ts",
+    "all": "pnpm run build:js && pnpm run fix:style && pnpm run check:all && pnpm run clean",
+    "start": "node dist",
+    "start:ts": "ts-node src",
     "start:watch": "nodemon",
-    "build:js": "tsc --skipLibCheck",
-    "build:js:clean": "rm -rf dist && npm run build:js",
+    "build:js": "tsc",
+    "build:js:clean": "rm -rf dist && pnpm run build:js",
     "bump:dev": "ncu --upgrade --dep dev --target minor",
     "bump:prod": "ncu --upgrade --dep prod --target minor",
-    "bump:all": "npm run bump:dev && npm run bump:prod",
-    "check:build": "tsc --noEmit",
+    "bump:all": "pnpm run bump:dev && pnpm run bump:prod",
     "check:lint": "eslint --format=codeframe '**/*.ts'",
     "check:style": "standardx",
     "check:duplicated": "jscpd",
-    "check:all": "npm run check:build && npm run check:lint && npm run check:style && npm run check:duplicated",
+    "check:all": "pnpm run check:lint && pnpm run check:style && pnpm run check:duplicated",
     "fix:style": "prettier --no-semi --print-width 100 --single-quote --trailing-comma none --write '**/*.ts' && standardx --fix '**/*.ts'",
     "clean": "rm -rf coverage dist report",
     "commit": "cz",
@@ -50,7 +49,7 @@
   ],
   "lint-staged": {
     "**/*.ts": [
-      "npm run fix:style"
+      "pnpm run fix:style"
     ]
   },
   "jscpd": {
@@ -75,7 +74,7 @@
     "watch": [
       "src"
     ],
-    "exec": "npm run build:js && npm start",
+    "exec": "pnpm run build:js && pnpm start",
     "ext": "ts"
   },
   "devDependencies": {
