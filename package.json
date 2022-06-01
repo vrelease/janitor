@@ -92,7 +92,7 @@
     "eslint-formatter-codeframe": "^7.32.1",
     "husky": "^7.0.4",
     "jscpd": "^3.4.5",
-    "lint-staged": "^12.3.7",
+    "lint-staged": "^13.0.0",
     "nodemon": "^2.0.15",
     "npm-check-updates": "^12.5.9",
     "prettier": "^2.6.2",
