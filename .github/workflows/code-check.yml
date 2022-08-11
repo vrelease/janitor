@@ -30,7 +30,7 @@ jobs:
 
       - name: Cache pnpm store
         id: cache-node-modules
-        uses: actions/cache@v3.0.2
+        uses: actions/cache@v3.0.7
         with:
           path: |
             ./node_modules
