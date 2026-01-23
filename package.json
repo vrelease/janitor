@@ -104,7 +104,7 @@
   "dependencies": {
     "@octokit/rest": "^18.12.0",
     "chalk": "^4.1.2",
-    "lodash": "^4.17.21",
+    "lodash": "^4.17.23",
     "semver": "^7.3.7"
   }
 }
